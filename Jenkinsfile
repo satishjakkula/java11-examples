@@ -2,7 +2,7 @@ node('jdk11-mvn3.8.4') {
     try {
         properties([parameters([choice(choices: ['scripted', 'master', 'declarative'], description: 'branch to be built', name: 'BRANCH_TO_BUILD')])])
         stage('Build') {
-            git 'https://github.com/spring-projects/spring-petclinic.git'
+            git branch: 'scripted_groovy', url: 'https://github.com/satishjakkula/java11-examples.git'
         }
     }
     catch (err) {
