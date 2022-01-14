@@ -2,11 +2,12 @@ node('jdk11-mvn-3.8.4') {
     
         stage('Branches')
         {
-           properties([parameters([choice(choices: ['scripted_groovy', 'master', 'declarative_groovy'], description: 'Select The Branch Name ', name: 'Branch_Name')]), pipelineTriggers([upstream(threshold: 'ABORTED', upstreamProjects: 'Spring PetClinic, ')])])
+		   properties([parameters([choice(choices: ['scripted_groovy', 'master', 'declarative_groovy'], description: 'Select The Branch Name ', name: 'Branch_Name')])])
+           
         }
         stage('source') {
             
-            git 'https://github.com/satishjakkula/java11-examples.git'
+            git url: 'https://github.com/satishjakkula/java11-examples.git', branch: "${params.Branch_Name}"
            
         }   
 		stage('build')
