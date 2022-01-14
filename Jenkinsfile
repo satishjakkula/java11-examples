@@ -7,7 +7,7 @@ node('jdk11-mvn-3.8.4') {
 		{
 			cleanWs()
 			sh '''echo $PATH
-			mvn clean package'''
+			/usr/local/apache-maven-3.8.4/bin/mvn clean package'''
 		}
 		
 }
