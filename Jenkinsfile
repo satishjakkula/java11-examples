@@ -1,13 +1,12 @@
 node('jdk11-mvn-3.8.4') {
     
-        stage('Branches')
+        stage('upstream build')
         {
-		   properties([parameters([choice(choices: ['scripted_groovy', 'master', 'declarative_groovy'], description: 'Select The Branch Name ', name: 'Branch_Name')])])
-           
-        }
+		  properties([pipelineTriggers([upstream('starterproject, ')])])
+		}
         stage('source') {
             
-            git url: 'https://github.com/satishjakkula/java11-examples.git', branch: "${params.Branch_Name}"
+            git 'https://github.com/satishjakkula/java11-examples.git'
            
         }   
 		stage('build')
