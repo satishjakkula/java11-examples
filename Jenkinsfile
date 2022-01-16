@@ -23,9 +23,11 @@ pipeline
 	post{
 		always
 		{
-		  mail from: vamshi.jullu@test.com
-		  to: satish.jk@test.com
-		  subject: ${en.JOB_NAME}'s ${env.BUILD_NUMBER} Status Is ${currentBuild.result}
+		  mail from: "vamshi.jullu@test.com",
+		  to: "satish.jk@test.com",
+		  subject: "${env.JOB_NAME}-${env.BUILD_NUMBER} Status Is ${currentBuild.result}",
+		  body: "${env.BUILD_URL} has a result ${currentBuild.result}"
+		  
 		}
 	}
 
